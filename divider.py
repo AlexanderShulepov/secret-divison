@@ -8,7 +8,8 @@ class divider:
 	def generate_parts(self):
 		self.M=[]
 		self.P=[]
-		g=int(pow(self.m,(1/self.k)))
+		g=int(pow(self.m,(1/self.k))+1)
+		print(round(pow(self.m,(1/(self.k-1)))-0.5))
 		for i in range(self.n):
 			g=self.generateMod(g)
 			self.M.append(g)
@@ -21,7 +22,7 @@ class divider:
 		if isSimple(g):
 			if g in self.M:
 				g+=1
-			else: 
+			elif g<round(pow(self.m,(1/(self.k-1)))-0.5): 
 				return g
 		else:
 			if g%2==0:
@@ -36,7 +37,7 @@ class divider:
 		for m in list(map((lambda x:x[1]),keys)):
 			M*=m
 		for key in keys:#key = (part, mod)
-			Mi=M//key[1]
+			Mi=M/key[1]
 			Mi_=inverse_of(Mi,key[1])
 
 			X+=(key[0]*Mi*Mi_)

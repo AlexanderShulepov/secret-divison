@@ -13,7 +13,7 @@ def eratosthenes(n):
 			res.append(x)
 	return res
 
-SIMPLE_EVENS=eratosthenes(500)
+SIMPLE_EVENS=eratosthenes(100000)
 
 def get_seed(t):
 	while True:

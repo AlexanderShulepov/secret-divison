@@ -18,7 +18,7 @@ def MR(n):
     if SR:
         S,r=SR[0],SR[1]
     else:
-        return(str(n)+"Bad number")
+        return False#bad number
 
     b=[]
     for i in range(t):
@@ -27,18 +27,17 @@ def MR(n):
         for j in range(1,S+1):
             b.append( (pow(b[-1],2,n)))
         if  b[-1]!=1:
-            return(str(n)+" - составное»")
+            return True
         elif b[b.index(1)-1]!=n-1:
-            return(str(n)+" - составное»")  
+            return False
         b=[]
-    return str(n)+" - простое"
+    return True
             
 
     
     
 def mr_test(n):
-            num=MR(n)
-            if  "простое" in num:
+            if  MR(n):
                 return True
             else:
                 return False

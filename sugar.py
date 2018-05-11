@@ -1,8 +1,22 @@
 
 from millerrabin import mr_test
+def eratosthenes(n):
+	sieve = list(range(n + 1))
+	sieve[1] = 0    
+	for i in sieve:
+		if i > 1:
+			for j in range(i + i, len(sieve), i):
+				sieve[j] = 0
+	res=[]
+	for x in sieve:
+		if x:
+			res.append(x)
+	return res
 
+SIMPLE_EVENS=eratosthenes(20000000)
 def isSimple(g):
-		return mr_test(g)
+		#return mr_test(g)
+		return True if g in SIMPLE_EVENS else False
 
 def extended_euclidean_algorithm(a, b):
     """
