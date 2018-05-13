@@ -9,11 +9,12 @@ class divider:
 		self.M=[]
 		self.P=[]
 		g=int(pow(self.m,(1/self.k))+1)
-		print(round(pow(self.m,(1/(self.k-1)))-0.5))
 		for i in range(self.n):
-			g=self.generateMod(g)
-			self.M.append(g)
-
+			try:
+				g=self.generateMod(g)
+				self.M.append(g)
+			except:
+				g+=1
 		for Mi in self.M:
 			self.P.append(self.m%Mi)
 		return list(zip(self.P,self.M))#(part, mod)
