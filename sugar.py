@@ -13,7 +13,7 @@ def eratosthenes(n):
 			res.append(x)
 	return res
 
-SIMPLE_EVENS=eratosthenes(20000000)
+SIMPLE_EVENS=eratosthenes(1000000)
 def isSimple(g):
 		#return mr_test(g)
 		return True if g in SIMPLE_EVENS else False
@@ -40,26 +40,23 @@ def extended_euclidean_algorithm(a, b):
     return old_r, old_s, old_t
 
 
-def inverse_of(n, p):
-    """
-    Возвращает обратную величину
-    n по модулю p.
-
-    Эта функция возвращает такое целое число m, при котором
-    (n * m) % p == 1.
-    """
-    gcd, x, y = extended_euclidean_algorithm(n, p)
-    assert (n * x + p * y) % p == gcd
-
-    if gcd != 1:
-        # Или n равно 0, или p не является простым.
-        return False
+def exgcd(a, b):
+    if a == 0:
+        return (b, 0, 1)
     else:
-        return x % p
-def gcd(a, b):
-    while b != 0:
-        a, b = b, a % b
-    return a
+        g, y, x = exgcd(b % a, a)
+        return (g, x - (b // a) * y, y)
+
+
+def inverse_of(a, m):
+    g, x, y = exgcd(abs(a), m)
+    if g != 1:
+        raise Exception('Обратного элемента не существует')
+    else:
+        if a > 0:
+            return x % m
+        else:
+            return -x % m
     
 def OK(value=""):
 	return {"status":True,"value":value}
